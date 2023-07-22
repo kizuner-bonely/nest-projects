@@ -8,9 +8,14 @@
     "lint": "npm run lint:script && npm run lint:style",
     "lint:style": "stylelint --fix \"src/**/*.{css,less}\""
   },
-  "keywords": [],
+  "keywords": [
+    "nest"
+  ],
   "author": "cmoon",
-  "license": "ISC",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.4.3"
+  },
   "devDependencies": {
     "@commitlint/cli": "^17.6.7",
     "@commitlint/config-conventional": "^17.6.7",
