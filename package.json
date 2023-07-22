@@ -17,7 +17,7 @@
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "commitlint": "^17.6.7",
-    "husky": "^8.0.3",
+    "husky": "^8.0.0",
     "prettier": "^3.0.0",
     "stylelint": "^15.10.2",
     "stylelint-config-prettier": "^9.0.5",
