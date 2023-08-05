@@ -14,7 +14,7 @@
   "author": "cmoon",
   "license": "MIT",
   "engines": {
-    "node": ">=20.4.3"
+    "node": ">=18"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.7",
@@ -41,5 +41,10 @@
       "npm run lint:style",
       "git add ."
     ]
+  },
+  "dependencies": {
+    "@ant-design/icons": "^5.1.4",
+    "antd": "^5.7.3",
+    "axios": "^1.4.0"
   }
 }
