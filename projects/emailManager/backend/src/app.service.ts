@@ -4,10 +4,12 @@ import * as path from 'path';
 import * as fs from 'fs';
 
 import Mail from './mail';
+import IMapManager from './imap';
 
 @Injectable()
 export class AppService {
   private mail = new Mail();
+  private IMapManager = new IMapManager();
 
   constructor(private configService: ConfigService) {}
 
@@ -39,5 +41,15 @@ export class AppService {
       .catch(() => {
         return '邮件发送失败';
       });
+  }
+
+  get() {
+    const email = this.configService.get('email');
+    const emailAuth = this.configService.get('emailAuth');
+    return this.IMapManager.run(email, emailAuth);
+  }
+
+  getMail() {
+    return this.IMapManager.getMail();
   }
 }

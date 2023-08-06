@@ -16,4 +16,14 @@ export class AppController {
   send() {
     return this.appService.send();
   }
+
+  @Get('get')
+  get() {
+    return this.appService.get();
+  }
+
+  @Get('getMail')
+  getMail() {
+    return this.appService.getMail();
+  }
 }
