@@ -16,3 +16,6 @@ projects to learn nest
   - 在 `projects/emailManager/backend/src` 新建文件 `.env` 并填上 email、emailAut、databaseUsername、databasePassword
   - 前端启动: `pnpm -C projects/loginByEmail/backend dev`
   - 后端启动: `pnpm -C projects/loginByEmail/frontend start:dev`
+- **jwt登录注册**
+  - 在 `projects/jwt/backend/src` 新建文件 `.env` 并填上 databaseUsername、databasePassword、jwtSecret
+  - 后端启动: `pnpm -C projects/jwt/backend start:dev`
