@@ -19,3 +19,6 @@ projects to learn nest
 - **jwt登录注册**
   - 在 `projects/jwt/backend/src` 新建文件 `.env` 并填上 databaseUsername、databasePassword、jwtSecret
   - 后端启动: `pnpm -C projects/jwt/backend start:dev`
+- **无感刷新**
+  - 前端启动: `pnpm -C projects/autoRefresh/frontend dev`
+  - 后端启动: `pnpm -C projects/autoRefresh/backend start:dev`
