@@ -22,3 +22,5 @@ projects to learn nest
 - **无感刷新**
   - 前端启动: `pnpm -C projects/autoRefresh/frontend dev`
   - 后端启动: `pnpm -C projects/autoRefresh/backend start:dev`
+- **文章阅读量**
+  - 后端启动: `pnpm -C projects/articleViews/backend start:dev`
