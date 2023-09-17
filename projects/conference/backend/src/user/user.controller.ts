@@ -1,5 +1,6 @@
 import { Controller, Body, Post, Get, Inject, Query } from '@nestjs/common'
 
+import { LoginUserDto } from './dto/login-user.dto'
 import { UserService } from './user.service'
 import { RegisterUserDto } from './dto/register-user.dto'
 import { EmailService } from '../email/email.service'
@@ -30,5 +31,31 @@ export class UserController {
       html: `<p>你的注册验证码是 ${code}</p>`,
     })
     return '发送成功'
+  }
+
+  // @Get('init-data')
+  // async initData() {
+  //   await this.userService.initData()
+  //   return 'done'
+  // }
+
+  @Post('login')
+  async userLogin(@Body() loginUser: LoginUserDto) {
+    return await this.userService.userLogin(loginUser, false)
+  }
+
+  @Post('admin/login')
+  async adminLogin(@Body() loginUser: LoginUserDto) {
+    return await this.userService.userLogin(loginUser, true)
+  }
+
+  @Get('refresh')
+  async refresh(@Query('refreshToken') refreshToken: string) {
+    return await this.userService.refresh(refreshToken, false)
+  }
+
+  @Get('admin/refresh')
+  async adminRefresh(@Query('refreshToken') refreshToken: string) {
+    return await this.userService.refresh(refreshToken, true)
   }
 }

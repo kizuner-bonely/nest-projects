@@ -1,9 +1,11 @@
 import {
   Column,
+  CreateDateColumn,
   Entity,
   JoinTable,
   ManyToMany,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm'
 import { Role } from './role.entity'
 
@@ -35,6 +37,12 @@ export class User {
 
   @Column({ comment: '是否为管理员', default: false })
   isAdmin: boolean
+
+  @CreateDateColumn()
+  createTime: Date
+
+  @UpdateDateColumn()
+  updateTime: Date
 
   @ManyToMany(() => Role)
   @JoinTable({ name: 'user_roles' })
