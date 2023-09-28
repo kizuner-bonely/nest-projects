@@ -1,25 +1,8 @@
-import {
-  Controller,
-  Get,
-  SetMetadata,
-  createParamDecorator,
-  ExecutionContext,
-} from '@nestjs/common'
-import { Request } from 'express'
+import { Controller, Get, SetMetadata } from '@nestjs/common'
 
 import { AppService } from './app.service'
-
-const RequireLogin = () => SetMetadata('require-login', true)
-
-const RequirePermission = (...permissions: string[]) =>
-  SetMetadata('require-permissions', permissions)
-
-const UserInfo = createParamDecorator((data: string, ctx: ExecutionContext) => {
-  const request = ctx.switchToHttp().getRequest<Request>()
-
-  if (!request.user) return null
-  return data ? request.user[data] : request.user
-})
+import { RequireLogin, RequirePermission } from './decorators'
+import { UserInfo } from './common'
 
 @Controller()
 export class AppController {
