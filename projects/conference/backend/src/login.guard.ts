@@ -11,6 +11,7 @@ import { Observable } from 'rxjs'
 import { Request } from 'express'
 
 import { JwtUserData } from './global'
+import { UnLoginException } from './not-login.filter'
 
 @Injectable()
 export class LoginGuard implements CanActivate {
@@ -35,7 +36,7 @@ export class LoginGuard implements CanActivate {
     const authorization = request.headers.authorization
 
     if (!authorization) {
-      throw new UnauthorizedException('用户未登录')
+      throw new UnLoginException()
     }
 
     try {

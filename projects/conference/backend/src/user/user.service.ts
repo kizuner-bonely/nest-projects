@@ -9,7 +9,7 @@ import {
 import { InjectRepository } from '@nestjs/typeorm'
 import { ConfigService } from '@nestjs/config'
 import { JwtService } from '@nestjs/jwt'
-import { Repository } from 'typeorm'
+import { Like, Repository } from 'typeorm'
 
 import { md5 } from '../utils/md5'
 import { RedisService } from '../redis/redis.service'
@@ -307,5 +307,45 @@ export class UserService {
       this.logger.error(err, UserService)
       return '用户信息修改失败'
     }
+  }
+
+  async freezeUserById(id: number) {
+    const user = await this.userRepository.findOneBy({ id })
+
+    user.isFrozen = true
+    await this.userRepository.save(user)
+  }
+
+  async findUsersByPage(
+    username: string,
+    nickName: string,
+    email: string,
+    pageIndex: number,
+    pageSize: number,
+  ) {
+    const skip = (pageIndex - 1) * pageSize
+    const condition: Record<string, any> = {}
+
+    if (username) condition.username = Like(username)
+    if (nickName) condition.nickName = Like(nickName)
+    if (email) condition.email = Like(email)
+
+    const [users, totalCount] = await this.userRepository.findAndCount({
+      select: [
+        'id',
+        'username',
+        'nickName',
+        'email',
+        'phoneNumber',
+        'isFrozen',
+        'avatar',
+        'createTime',
+      ],
+      skip,
+      take: pageSize,
+      where: condition,
+    })
+
+    return { users, totalCount }
   }
 }
